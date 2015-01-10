@@ -98,10 +98,19 @@ function quizz_extra_form_quiz_entity_form_alter(&$form, $form_state) {
  */
 function quizz_extra_entity_view($entity, $type, $view_mode, $langcode) {
   if (('quiz_entity' === $type) && 'full' === $view_mode) {
+    $settings = field_bundle_settings('quiz_entity', $entity->type);
+
+    if (!empty($settings['extra_fields']['display']['quiz_questions'][$view_mode]['visible'])) {
+      $entity->content['quiz_questions'] = array(
+          '#markup' => views_embed_view('quizz_questions_inside', 'default', $entity->qid),
+      );
+    }
+
     if ($domain = variable_get('disqus_domain', '')) {
       $uri = entity_uri($type, $entity);
       $entity->content['comment'] = array(
           '#type'   => 'disqus',
+          '#weight' => 75,
           '#disqus' => array(
               'domain'     => $domain,
               'status'     => (bool) $entity->comment,
@@ -112,5 +121,18 @@ function quizz_extra_entity_view($entity, $type, $view_mode, $langcode) {
           ),
       );
     }
+  }
+}
+
+/**
+ * Implements hook_field_extra_fields_display_alter().
+ */
+function quizz_extra_field_extra_fields_alter(&$info) {
+  foreach ($info['quiz_entity'] as &$b_info) {
+    $b_info['display']['quiz_questions'] = array(
+        'label'       => t('Questions'),
+        'description' => t('Questions in quiz'),
+        'weight'      => 8,
+    );
   }
 }
