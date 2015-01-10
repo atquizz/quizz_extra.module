@@ -77,19 +77,20 @@ function quizz_extra_form_quiz_entity_form_alter(&$form, $form_state) {
  * Implements hook_entity_view().
  */
 function quizz_extra_entity_view($entity, $type, $view_mode, $langcode) {
-  $domain = variable_get('disqus_domain', '');
-  if ($domain && ('quiz_entity' === $type)) {
-    $uri = entity_uri($type, $entity);
-    $entity->content['comment'] = array(
-        '#type'   => 'disqus',
-        '#disqus' => array(
-            'domain'     => $domain,
-            'status'     => (bool) $entity->comment,
-            'url'        => url($uri['path'], array('absolute' => TRUE)),
-            'title'      => $entity->label(),
-            'identifier' => $type . '/' . $entity->identifier(),
-            'developer'  => variable_get('disqus_developer', FALSE),
-        ),
-    );
+  if (('quiz_entity' === $type) && 'full' === $view_mode) {
+    if ($domain = variable_get('disqus_domain', '')) {
+      $uri = entity_uri($type, $entity);
+      $entity->content['comment'] = array(
+          '#type'   => 'disqus',
+          '#disqus' => array(
+              'domain'     => $domain,
+              'status'     => (bool) $entity->comment,
+              'url'        => url($uri['path'], array('absolute' => TRUE)),
+              'title'      => $entity->label(),
+              'identifier' => $type . '/' . $entity->identifier(),
+              'developer'  => variable_get('disqus_developer', FALSE),
+          ),
+      );
+    }
   }
 }
