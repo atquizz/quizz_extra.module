@@ -102,7 +102,7 @@ function quizz_extra_entity_view($entity, $type, $view_mode, $langcode) {
 
     if (!empty($settings['extra_fields']['display']['quiz_questions'][$view_mode]['visible'])) {
       $entity->content['quiz_questions'] = array(
-          '#markup' => views_embed_view('quizz_questions_inside', 'default', $entity->qid),
+          '#markup' => views_embed_view('quizz_questions_inside', 'default', $entity->vid),
       );
     }
 

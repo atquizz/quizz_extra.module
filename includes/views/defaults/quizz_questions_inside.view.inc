@@ -46,15 +46,15 @@ $handler->display->display_options['fields']['title']['field'] = 'title';
 $handler->display->display_options['fields']['type']['id'] = 'type';
 $handler->display->display_options['fields']['type']['table'] = 'quiz_question_entity';
 $handler->display->display_options['fields']['type']['field'] = 'type';
-/* Contextual filter: Quiz question relationship: Quiz_qid */
-$handler->display->display_options['arguments']['quiz_qid']['id'] = 'quiz_qid';
-$handler->display->display_options['arguments']['quiz_qid']['table'] = 'quiz_relationship';
-$handler->display->display_options['arguments']['quiz_qid']['field'] = 'quiz_qid';
-$handler->display->display_options['arguments']['quiz_qid']['relationship'] = 'quiz_relationship_question_qid';
-$handler->display->display_options['arguments']['quiz_qid']['default_action'] = 'default';
-$handler->display->display_options['arguments']['quiz_qid']['default_argument_type'] = 'quiz_entity';
-$handler->display->display_options['arguments']['quiz_qid']['summary']['number_of_records'] = '0';
-$handler->display->display_options['arguments']['quiz_qid']['summary']['format'] = 'default_summary';
-$handler->display->display_options['arguments']['quiz_qid']['summary_options']['items_per_page'] = '25';
+/* Contextual filter: Quiz question relationship: Quiz_vid */
+$handler->display->display_options['arguments']['quiz_vid']['id'] = 'quiz_vid';
+$handler->display->display_options['arguments']['quiz_vid']['table'] = 'quiz_relationship';
+$handler->display->display_options['arguments']['quiz_vid']['field'] = 'quiz_vid';
+$handler->display->display_options['arguments']['quiz_vid']['relationship'] = 'quiz_relationship_question_qid';
+$handler->display->display_options['arguments']['quiz_vid']['default_action'] = 'not found';
+$handler->display->display_options['arguments']['quiz_vid']['default_argument_type'] = 'fixed';
+$handler->display->display_options['arguments']['quiz_vid']['summary']['number_of_records'] = '0';
+$handler->display->display_options['arguments']['quiz_vid']['summary']['format'] = 'default_summary';
+$handler->display->display_options['arguments']['quiz_vid']['summary_options']['items_per_page'] = '25';
 
 return $view;
