@@ -1,6 +1,26 @@
 <?php
 
 /**
+ * Implements hook_views_api().
+ */
+function quizz_extra_views_api() {
+  return array('api' => '3.0', 'path' => drupal_get_path('module', 'quizz_extra') . '/includes/views');
+}
+
+/**
+ * Implements hook_views_default_views().
+ */
+function quizz_extra_views_default_views() {
+  $files = file_scan_directory(drupal_get_path('module', 'quizz_extra') . '/includes/views/defaults', '/\.view\.inc/');
+  $views = array();
+  foreach (array_keys($files) as $path) {
+    $view = require $path;
+    $views[$view->name] = $view;
+  }
+  return $views;
+}
+
+/**
  * Implements hook_schema_alter().
  */
 function quizz_extra_schema_alter(&$schema) {
