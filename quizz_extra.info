@@ -1,0 +1,8 @@
+name = Quizz extra
+core = 7.x
+version = 7.x-6.x
+description = Extra features for quizz.module
+
+dependencies[] = disqus
+dependencies[] = quizz
+dependencies[] = quizz_question
