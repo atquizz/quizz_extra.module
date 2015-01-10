@@ -101,7 +101,7 @@ function quizz_extra_entity_view($entity, $type, $view_mode, $langcode) {
     $settings = field_bundle_settings('quiz_entity', $entity->type);
 
     if (!empty($settings['extra_fields']['display']['quiz_questions'][$view_mode]['visible'])) {
-      $entity->content['quiz_questions'] = array(
+      $entity->content['quiz_entity'][$entity->qid]['quiz_questions'] = array(
           '#markup' => views_embed_view('quizz_questions_inside', 'default', $entity->vid),
       );
     }
