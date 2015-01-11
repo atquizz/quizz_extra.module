@@ -134,26 +134,11 @@ function quizz_extra_form_alter(&$form, $form_state, $form_id) {
     return;
   }
 
-  $form['publishing']['comment_settings'] = array(
-      '#type'        => 'fieldset',
-      '#access'      => user_access('administer comments'),
-      '#title'       => t('Comment settings'),
-      '#collapsible' => TRUE,
-      '#collapsed'   => TRUE,
-      '#group'       => 'additional_settings',
-      '#attributes'  => array('class' => array('comment-node-settings-form')),
-      '#attached'    => array('js' => array(drupal_get_path('module', 'comment') . '/comment-node-form.js')),
-      '#weight'      => 30,
-      '#group'       => 'publishing_tabs',
-  );
-
-  $form['publishing']['comment_settings']['comment'] = array(
-      '#type'          => 'radios',
-      '#title'         => t('Comments'),
-      '#title_display' => 'invisible',
+  $form['publishing']['publishing']['comment'] = array(
+      '#type'          => 'checkbox',
+      '#title'         => t('Open comments'),
       '#parents'       => array('comment'),
       '#default_value' => isset($question->comment) ? $question->comment : $default_comment,
-      '#options'       => array(0 => t('Closed'), 1 => t('Open')),
   );
 }
 
