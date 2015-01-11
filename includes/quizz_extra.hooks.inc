@@ -146,7 +146,18 @@ function quizz_extra_form_alter(&$form, $form_state, $form_id) {
  * Implements hook_entity_view().
  */
 function quizz_extra_entity_view($entity, $type, $view_mode) {
-  if (!in_array($type, array('quiz_entity', 'quiz_question_entity')) || ('full' !== $view_mode)) {
+  if (!in_array($type, array('quiz_entity', 'quiz_question_entity'))) {
+    return;
+  }
+
+  if (!empty($entity->content['quiz_question_body'][0])) {
+    $entity->content['quiz_question_body'][0] += array(
+        '#prefix' => '<div class="well">',
+        '#suffix' => '</div>',
+    );
+  }
+
+  if (!'full' !== $view_mode) {
     return;
   }
 
