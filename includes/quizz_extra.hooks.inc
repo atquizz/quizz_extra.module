@@ -157,7 +157,7 @@ function quizz_extra_entity_view($entity, $type, $view_mode) {
     );
   }
 
-  if (!'full' !== $view_mode) {
+  if ('full' !== $view_mode) {
     return;
   }
 
