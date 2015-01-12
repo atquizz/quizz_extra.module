@@ -1,7 +1,7 @@
 <?php
 
 $view = new view();
-$view->name = 'vinaquiz_questions';
+$view->name = 'quizz_questions';
 $view->description = '';
 $view->tag = 'default';
 $view->base_table = 'quiz_question_entity';
